@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — GTA 6-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <h1>Neon Coast <span>Cover Studio</span></h1>
+    <p class="tagline">Turn your photo and a caption into GTA 6-style cover art — offline, in your browser.</p>
+  </div>
+  <div class="top-actions">
+    <button type="button" id="undo" class="tool-btn" disabled>Undo</button>
+    <button type="button" id="redo" class="tool-btn" disabled>Redo</button>
+    <button type="button" id="export" class="tool-btn primary">Export PNG</button>
+  </div>
+</header>
+
+<main class="studio">
+  <section class="canvas-area">
+    <canvas id="preview" width="640" height="640" aria-label="Cover preview"></canvas>
+    <p id="panel-info" class="hint">Panel 1 of 4 selected — drag it to pan, use the zoom slider to scale.</p>
+    <p id="export-status" class="hint" role="status"></p>
+  </section>
+
+  <aside class="controls">
+    <section class="panel">
+      <h2>Layout</h2>
+      <div id="layout-bar" class="btn-row" role="group" aria-label="Cover layout"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Grade</h2>
+      <div id="grade-bar" class="btn-row" role="group" aria-label="Colour grade"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Caption</h2>
+      <label class="field">
+        <span>Title</span>
+        <input id="title-input" type="text" value="VICE CITY" maxlength="30" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Subtitle</span>
+        <input id="subtitle-input" type="text" value="Neon Coast" maxlength="40" autocomplete="off">
+      </label>
+      <div class="field">
+        <span>Title colour</span>
+        <div id="colour-bar" class="swatches" role="group" aria-label="Title colour"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Photos</h2>
+      <div id="drop-zone" class="drop-zone" tabindex="0" role="button" aria-label="Choose photos or drop them here">
+        <strong>Drop photos here</strong> or click to choose
+        <input id="file-input" type="file" accept="image/*" multiple hidden>
+      </div>
+      <div class="sample-row">
+        <button type="button" class="tool-btn" data-sample="Boulevard">Sample: Boulevard</button>
+        <button type="button" class="tool-btn" data-sample="Pier">Sample: Pier</button>
+      </div>
+      <div id="photo-list" class="photo-list"></div>
+      <p id="photo-status" class="hint" role="status"></p>
+      <label class="field">
+        <span>Zoom the selected panel</span>
+        <input id="zoom-slider" type="range" min="100" max="300" value="100" step="1">
+      </label>
+      <button type="button" id="fill-all" class="tool-btn">Fill all panels with this photo</button>
+    </section>
+
+    <section class="panel">
+      <h2>Export size</h2>
+      <label class="field">
+        <span>Size</span>
+        <select id="size-select"></select>
+      </label>
+      <p class="hint">Exports a PNG at the chosen pixel size — square for feeds, portrait for stories, landscape for banners.</p>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>Your photos never leave your machine — everything runs offline in this page. Fonts: Anton and Pacifico, SIL Open Font License. Cover art is your own design; no Rockstar Games logo, artwork or font is used.</p>
+</footer>
+
+<div id="test-results" class="test-results" style="display:none"></div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
